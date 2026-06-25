@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notas del Facilitador</title>
+  <style>
+    /* ═══════════════════════════════════════════
+       SPEAKER NOTES — Matching dark aesthetic
+       ═══════════════════════════════════════════ */
+
+    :root {
+      --bg-deep: #0a0a0a;
+      --bg-surface: #111111;
+      --bg-card: #161616;
+      --accent: #ff1f1f;
+      --accent-soft: rgba(255, 31, 31, 0.06);
+      --accent-border: rgba(255, 31, 31, 0.22);
+      --text-bright: #f0f0f0;
+      --text-primary: #e0e0e0;
+      --text-secondary: #747474;
+      --text-muted: #333333;
+      --border: rgba(255, 255, 255, 0.055);
+      --font: 'Aptos', 'Aptos Display', 'Segoe UI', system-ui, -apple-system, sans-serif;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--bg-deep);
+      color: var(--text-primary);
+      font-family: var(--font);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-y: auto;
+      min-height: 100vh;
+    }
+
+    ::selection {
+      background: var(--accent);
+      color: #fff;
+    }
+
+
+    /* --- Header --- */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: var(--bg-deep);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      backdrop-filter: blur(12px);
+    }
+
+    .header__left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .header__badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--accent-soft);
+      border: 1px solid var(--accent-border);
+      border-radius: 6px;
+      padding: 4px 14px;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .header__slide-info {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .header__slide-info span {
+      color: var(--text-bright);
+      font-weight: 600;
+    }
+
+    .header__timer {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .timer__display {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--text-bright);
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.04em;
+      min-width: 80px;
+      text-align: right;
+    }
+
+    .timer__btn {
+      width: 32px;
+      height: 32px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: all 200ms var(--ease-out);
+      outline: none;
+    }
+
+    .timer__btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    .timer__btn svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      stroke-width: 2.5;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+
+    /* --- Main Content --- */
+    .main {
+      padding: 32px 28px 60px;
+    }
+
+
+    /* --- Current Slide Title --- */
+    .current-title {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--text-bright);
+      margin-bottom: 8px;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+    }
+
+    .current-title .accent {
+      color: var(--accent);
+    }
+
+
+    /* --- Accent Line --- */
+    .accent-line {
+      width: 44px;
+      height: 2px;
+      background: var(--accent);
+      margin-bottom: 28px;
+      border-radius: 1px;
+    }
+
+
+    /* --- Notes Body --- */
+    .notes-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--accent);
+      margin-bottom: 12px;
+      font-weight: 500;
+    }
+
+    .notes-body {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: var(--text-primary);
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    .notes-body:empty::before {
+      content: 'Sin notas para esta diapositiva.';
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+
+    /* --- Next Slide Preview --- */
+    .next-preview {
+      margin-top: 40px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    .next-preview__label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .next-preview__title {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .next-preview__title:empty::before {
+      content: '— Fin de la presentación —';
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+
+    /* --- Navigation Buttons --- */
+    .nav-controls {
+      display: flex;
+      gap: 8px;
+      margin-top: 32px;
+    }
+
+    .nav-btn {
+      flex: 1;
+      padding: 10px 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text-secondary);
+      font-family: var(--font);
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 200ms var(--ease-out);
+      outline: none;
+    }
+
+    .nav-btn:hover {
+      border-color: var(--accent-border);
+      color: var(--text-bright);
+      background: var(--bg-card);
+    }
+
+    .nav-btn:active {
+      transform: scale(0.98);
+    }
+
+
+    /* --- Disconnected State --- */
+    .disconnected {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 60vh;
+      text-align: center;
+      gap: 16px;
+    }
+
+    .disconnected__icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 1.4rem;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .disconnected__text {
+      font-size: 1rem;
+      color: var(--text-muted);
+    }
+
+    .disconnected__sub {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      opacity: 0.6;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header__left">
+      <span class="header__badge">Notas del Facilitador</span>
+      <span class="header__slide-info" id="slideInfo">
+        Diapositiva <span id="slideNum">—</span> de <span id="slideTotal">—</span>
+      </span>
+    </div>
+    <div class="header__timer">
+      <span class="timer__display" id="timerDisplay">00:00</span>
+      <button class="timer__btn" id="timerToggle" title="Iniciar/Pausar">
+        <svg id="timerIcon" viewBox="0 0 24 24">
+          <polygon points="5 3 19 12 5 21 5 3"></polygon>
+        </svg>
+      </button>
+      <button class="timer__btn" id="timerReset" title="Reiniciar">
+        <svg viewBox="0 0 24 24">
+          <polyline points="1 4 1 10 7 10"></polyline>
+          <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Waiting State -->
+  <div class="main" id="mainContent">
+    <div class="disconnected" id="waitingState">
+      <div class="disconnected__icon">⏳</div>
+      <p class="disconnected__text">Esperando conexión con la presentación...</p>
+      <p class="disconnected__sub">Abre la presentación principal y presiona <strong>N</strong> o el ícono de notas.</p>
+    </div>
+
+    <!-- Connected State (hidden initially) -->
+    <div id="connectedState" style="display: none;">
+      <h1 class="current-title" id="currentTitle"></h1>
+      <div class="accent-line"></div>
+      <span class="notes-label">Notas</span>
+      <div class="notes-body" id="notesBody"></div>
+
+      <div class="next-preview">
+        <span class="next-preview__label">Siguiente diapositiva</span>
+        <p class="next-preview__title" id="nextTitle"></p>
+      </div>
+
+      <div class="nav-controls">
+        <button class="nav-btn" id="navPrev">← Anterior</button>
+        <button class="nav-btn" id="navNext">Siguiente →</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      'use strict';
+
+      // ─── BroadcastChannel ─────────────────────
+      const channel = new BroadcastChannel('workshop-slides');
+
+      // DOM refs
+      const waitingState = document.getElementById('waitingState');
+      const connectedState = document.getElementById('connectedState');
+      const slideNum = document.getElementById('slideNum');
+      const slideTotal = document.getElementById('slideTotal');
+      const currentTitle = document.getElementById('currentTitle');
+      const notesBody = document.getElementById('notesBody');
+      const nextTitle = document.getElementById('nextTitle');
+      const navPrev = document.getElementById('navPrev');
+      const navNext = document.getElementById('navNext');
+
+      // Timer refs
+      const timerDisplay = document.getElementById('timerDisplay');
+      const timerToggle = document.getElementById('timerToggle');
+      const timerIcon = document.getElementById('timerIcon');
+      const timerReset = document.getElementById('timerReset');
+
+      let currentIndex = 0;
+      let totalSlides = 17;
+
+      // ─── Timer Logic ──────────────────────────
+      let timerSeconds = 0;
+      let timerInterval = null;
+      let timerRunning = false;
+
+      function formatTime(seconds) {
+        const m = Math.floor(seconds / 60).toString().padStart(2, '0');
+        const s = (seconds % 60).toString().padStart(2, '0');
+        return m + ':' + s;
+      }
+
+      function updateTimerDisplay() {
+        timerDisplay.textContent = formatTime(timerSeconds);
+      }
+
+      function startTimer() {
+        if (timerRunning) return;
+        timerRunning = true;
+        timerIcon.innerHTML = '<line x1="6" y1="4" x2="6" y2="20"></line><line x1="18" y1="4" x2="18" y2="20"></line>';
+        timerInterval = setInterval(() => {
+          timerSeconds++;
+          updateTimerDisplay();
+        }, 1000);
+      }
+
+      function pauseTimer() {
+        timerRunning = false;
+        timerIcon.innerHTML = '<polygon points="5 3 19 12 5 21 5 3"></polygon>';
+        clearInterval(timerInterval);
+      }
+
+      function resetTimer() {
+        pauseTimer();
+        timerSeconds = 0;
+        updateTimerDisplay();
+      }
+
+      timerToggle.addEventListener('click', () => {
+        if (timerRunning) pauseTimer();
+        else startTimer();
+      });
+
+      timerReset.addEventListener('click', resetTimer);
+
+
+      // ─── Channel Listener ─────────────────────
+      channel.addEventListener('message', (e) => {
+        if (e.data.type === 'slide-change') {
+          showConnected();
+          currentIndex = e.data.index;
+          totalSlides = e.data.totalSlides;
+
+          slideNum.textContent = e.data.slideNumber;
+          slideTotal.textContent = totalSlides;
+          currentTitle.textContent = e.data.title;
+          notesBody.textContent = e.data.notes;
+          nextTitle.textContent = e.data.nextTitle;
+
+          // Auto-start timer on first slide change
+          if (!timerRunning && timerSeconds === 0) {
+            startTimer();
+          }
+        }
+      });
+
+      function showConnected() {
+        waitingState.style.display = 'none';
+        connectedState.style.display = 'block';
+      }
+
+      // ─── Navigation from Notes Window ─────────
+      navPrev.addEventListener('click', () => {
+        channel.postMessage({ type: 'navigate', index: currentIndex - 1 });
+      });
+
+      navNext.addEventListener('click', () => {
+        channel.postMessage({ type: 'navigate', index: currentIndex + 1 });
+      });
+
+      // Keyboard nav in notes window too
+      document.addEventListener('keydown', (e) => {
+        switch (e.key) {
+          case 'ArrowRight':
+          case ' ':
+            e.preventDefault();
+            channel.postMessage({ type: 'navigate', index: currentIndex + 1 });
+            break;
+          case 'ArrowLeft':
+            e.preventDefault();
+            channel.postMessage({ type: 'navigate', index: currentIndex - 1 });
+            break;
+        }
+      });
+
+      // Request current state from main window
+      channel.postMessage({ type: 'request-state' });
+
+    })();
+  </script>
+</body>
+</html>

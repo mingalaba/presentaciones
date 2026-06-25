@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Workshop interactivo: Estimación Ágil con Puntos de Historia. Aprende por qué dejamos de medir en horas.">
+  <title>Workshop · Estimación Ágil</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Progress Bar -->
+  <div class="progress" id="progressBar">
+    <div class="progress__fill" id="progressFill"></div>
+  </div>
+
+  <!-- Grain Overlay -->
+  <div class="grain"></div>
+
+  <!-- ===== PRESENTATION ===== -->
+  <div class="presentation" id="presentation">
+
+    <!-- ─── SLIDE 1 ─── -->
+    <section class="slide slide--hero active" id="slide-1">
+      <span class="slide__watermark">01</span>
+      <div class="slide__inner">
+        <span class="slide__eyebrow">Workshop · 60 min</span>
+        <h1 class="slide__title">Estimación Ágil: <span class="highlight">¿Por qué dejamos de medir en horas?</span></h1>
+        <div class="slide__accent-line"></div>
+        <div class="slide__content">
+          <div class="slide__point">
+            <span class="slide__marker"></span>
+            <p class="slide__point-text">Estimar no es una tortura administrativa; es una <strong>herramienta para tomar decisiones.</strong></p>
+          </div>
+          <div class="slide__point">
+            <span class="slide__marker"></span>
+            <p class="slide__point-text">El desarrollo de software no es una línea de montaje: es un <strong>proceso creativo de descubrimiento.</strong></p>
+          </div>
+          <div class="slide__point">
+            <span class="slide__marker"></span>
+            <p class="slide__point-text">Hoy vamos a <strong>sintonizar nuestro canal de comunicación.</strong></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ─── SLIDE 2 ─── -->
+    <section class="slide" id="slide-2">
+      <span class="slide__watermark">02</span>
+      <div class="slide__inner">
+        <span class="slide__eyebrow">Apertura</span>
+        <h2 class="slide__title">Bienvenidos al Desafío de la <span class="highlight">Planificación</span></h2>
+        <div class="slide__accent-line"></div>
+        <div class="slide__content">
+          <div class="slide__point">
+            <span class="slide__marker"></span>
+            <p class="slide__point-text">Estimar es una <strong>actividad de equipo</strong>, no una imposición administrativa.</p>
+          </div>
+          <div class="slide__point">
+            <span class="slide__marker"></span>
+            <p class="slide__point-text">Bienvenidos a un <strong>espacio interactivo de 60 minutos.</strong></p>
+          </div>
+        </div>
+        
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin-top: 48px; text-align: center;">
+          <p class="slide__prompt" style="font-size: clamp(1.8rem, 3.2vw, 2.6rem); color: var(--accent); font-weight: 700; margin: 0 0 16px 0; max-width: 800px; text-align: center; width: 100%;">¿Para qué estimamos en nuestro equipo?</p>
+          <p class="slide__prompt-sub" style="font-size: 1.15rem; color: var(--text-primary); font-style: normal; margin: 0 auto; text-align: center;">Escribe tu respuesta en el chat, manténla ahí y envíala a mi señal.</p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ─── SLIDE 3 ─── -->
+    <section class="slide" id="slide-3">
+      <span class="slide__watermark">03</span>
+      <div class="slide__inner">
+        <span class="slide__eyebrow">Propósito</span>
+        <h2 class="slide__title">El Propósito de la <span class="highlight">Estimación</span></h2>
+        <div class="slide__accent-line"></div>
+        <div class="slide__columns">
+          <div class="slide__col-item">
+            <div class="slide__card">
+              <span class="slide__card-label">Negocio · POs</span>
+              <h3 class="slide__card-title">Previsibilidad</h3>
+              <p class="slide__card-text">Necesitan previsibilidad para coordinar lanzamientos (Release Planning).</p>
+            </div>
+          </div>
+          <div class="slide__col-item">
+            <div class="slide__card">
+              <span class="slide__card-label">Equipo · Devs</span>
+              <h3 class="slide__card-title">Protección</h3>
+              <p class="slide__card-text">Necesitan un escudo para proteger su ritmo de trabajo y su capacidad real.</p>
+            </div>
+          </div>
+          <div class="slide__col-item">
+            <div class="slide__card">
+              <span class="slide__card-label">Proceso · Scrum Master</span>
+              <h3 class="slide__card-title">Mejora Continua</h3>
+              <p class="slide__card-text">Necesitamos medir para adaptarnos y mejorar continuamente.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ─── SLIDE 4 ─── -->
+    <section class="slide" id="slide-4">
+      <span class="slide__watermark">04</span>
+      <div class="slide__inner">
+        <span class="slide__eyebrow">Conceptos Clave</span>
+        <h2 class="slide__title">El gran malentendido: <span class="highlight">Estimación vs. Compromiso vs. Objetivo</span></h2>
+        <div class="slide__accent-line"></div>
+        <div class="slide__columns">
+          <div class="slide__col-item">
+            <div class="slide__card">
+              <span class="slide__card-label">Negocio</span>
+              <h3 class="slide__card-title">Objetivo</h3>
+              <p class="slide__card-text">Lo que nos gustaría lograr (ej. <em>«Lanzar el botón de pago antes del Black Friday»</em>).</p>
+            </div>
+          </div>
+          <div class="slide__col-item">
+            <div class="slide__card">
+              <span class="slide__card-label">Técnico</span>
+              <h3 class="slide__card-title">Estimación</h3>
+              <p class="slide__card-text">Un cálculo probabilístico basado en el tamaño y la incertidumbre.</p>
+            </div>
+          </div>
+          <div class="slide__col-item">
+            <div class="slide__card">
+              <span class="slide__card-label">Equipo</span>
+              <h3 class="slide__card-title">Compromiso</h3>
+              <p class="slide__card-text">Una promesa seria de entregar con calidad en una fecha, basada en datos reales.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ─── SLIDE 5 ─── -->
+    <section class="slide slide--exercise" id="slide-5">
+      <span class="slide__watermark">05</span>
+      <div class="slide__inner">
+        <span class="slide__eyebrow">Ejercicio 1</span>
+        <h2 class="slide__title">El Desafío de la <span class="highlight">Taza de Té</span></h2>
+        <div class="slide__accent-line"></div>
+        
+        <!-- Dinámica Inicial -->
+        <div class="slide__exercise-card" style="margin-bottom: 24px;">
+          <span class="slide__exercise-label">Dinámica Central</span>
+          <p class="slide__prompt" style="color: var(--accent); margin: 0 0 10px 0; font-size: clamp(1.4rem, 2.3vw, 1.8rem); line-height: 1.4;">Escribir en el chat cuántos minutos les toma preparar una taza de té.</p>
+          <p class="slide__prompt-sub" style="color: var(--text-primary); font-size: 1.05rem; font-style: normal; margin-top: 4px;">No lo envíen hasta que dé la instrucción.</p>
+        </div>
+
+        <!-- Resultados Revelados al Hacer Click -->
+        <div class="reveal-item">
+          <div class="slide__content">
+            <div class="slide__point">
+              <span class="slide__marker"></span>
+              <p class="slide__point-text">La falta de alineación en las <strong>condiciones de aceptación</strong> genera discrepancias masivas.</p>
+            </div>
+            <div class="slide__point">
+              <span class="slide__marker"></span>
+              <p class="slide__point-text">Estimar en horas asume <strong>condiciones perfectas</strong> que no existen en el día a día.</p>
+            </div>
+          </div>
+          <div class="slide__exercise-card" style="border-left-color: var(--text-secondary); margin-top: 20px; background: rgba(255,255,255,0.01);">
+            <p class="slide__exercise-text" style="font-size: 1.05rem; line-height: 1.7; color: var(--text-bright);">
+              ¿Quién asumió que el agua ya estaba caliente?<br>
+              ¿Quién asumió que tenía que ir a la cocina?<br>
+              ¿Quién asumió que tenía que ir al supermercado a comprar el té?
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ─── SLIDE 6 ─── -->
+    <section class="slide" id="slide-6">
+      <span class="slide__watermark">06</span>
+      <div class="slide__inner">
+        <span class="slide__eyebrow">El problema</span>
+        <h2 class="slide__title">La trampa de las <span class="highlight">horas absolutas</span></h2>
+        <div class="slide__accent-line"></div>
+        <div class="slide__content">
+          <div class="slide__point">
+            <span class="slide__marker"></span>
+            <p class="slide__point-text"><strong>Tus horas no son mis horas:</strong> la experiencia cambia el tiempo, pero no el trabajo.</p>
+          </div>
+          <div class="slide__point">
+            <span class="slide__marker"></span>
+            <p class="slide__point-text"><strong>El «colchón» invisible:</strong> cuando estimamos en horas, inflamos los números por miedo.</p>
+          </div>
+          <div class="slide__point">
+            <span class="slide__marker"></span>
+            <p class="slide__point-text"><strong>Distracciones invisibles:</strong> las horas de desarrollo asumen un mundo ideal sin reuniones, correos ni interrupciones.</p>
+          </div>
+          <div class="slide__point">
+            <span class="slide__marker"></span>
+            <p class="slide__point-text">Las horas son <strong>finitas</strong> (8 horas al día); si medimos en horas, la velocidad del equipo tiene un tope físico insuperable.</p>
+          </div>
+          <div class="slide__point">
+            <span class="slide__marker"></span>
+            <p class="slide__point-text">La <strong>eficiencia del proceso</strong> y la eliminación de desperdicios no tienen límites.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ─── SLIDE 7 ─── -->
+    <section class="slide" id="slide-7">
+      <span class="slide__watermark">07</span>
+      <div class="slide__inner">
+        <span class="slide__eyebrow">Concepto Central</span>
+        <h2 class="slide__title">¿Qué es un <span class="highlight">«Punto de Historia»</span>?</h2>
+        <div class="slide__accent-line"></div>
+        <div class="slide__keyfact">No mide tiempo — mide el tamaño relativo de la tarea</div>
+        <p class="slide__subtitle">La receta de la complejidad: tres ingredientes en un solo número.</p>
+        <div class="slide__columns">
+          <div class="slide__col-item">
+            <div class="slide__card">
+              <span class="slide__card-label">Ingrediente 1</span>
+              <h3 class="slide__card-title">Esfuerzo</h3>
+              <p class="slide__card-text">Cuánto trabajo físico/mental hay que hacer.</p>
+            </div>
+          </div>
+          <div class="slide__col-item">
+            <div class="slide__card">
+              <span class="slide__card-label">Ingrediente 2</span>
+              <h3 class="slide__card-title">Complejidad</h3>
+              <p class="slide__card-text">Qué tan difícil o enredado es técnicamente.</p>
+            </div>
+          </div>
+          <div class="slide__col-item">
+            <div class="slide__card">
+              <span class="slide__card-label">Ingrediente 3</span>
+              <h3 class="slide__card-title">Incertidumbre / Riesgo</h3>
+              <p class="slide__card-text">Lo que desconocemos o los factores que no controlamos.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ─── SLIDE 8 ─── -->
+    <section class="slide" id="slide-8">
+      <span class="slide__watermark">08</span>
+      <div class="slide__inner">
+        <span class="slide__eyebrow">Ciencia Cognitiva</span>
+        <h2 class="slide__title">Comparar es fácil, <span class="highlight">predecir es imposible</span></h2>
+        <div class="slide__accent-line"></div>
+        <div class="slide__content">
+          <div class="slide__point">
+            <span class="slide__marker"></span>
+            <p class="slide__point-text">Nuestro cerebro es una <strong>máquina de comparar</strong>, no de predecir con exactitud.</p>
+          </div>
+          <div class="slide__point">
+            <span class="slide__marker"></span>
+            <p class="slide__point-text"><strong>La Ley de Weber-Fechner:</strong> Percibimos diferencias proporcionales, no absolutas.</p>
+          </div>
+          <div class="slide__point">
+            <span class="slide__marker"></span>
+            <p class="slide__point-text">Es fácil ver que un perro Gran Danés es más grande que un Chihuahua; es <strong>imposible adivinar cuántos gramos pesa cada uno</strong> sin una balanza.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ─── SLIDE 9 ─── -->
+    <section class="slide" id="slide-9">
+      <span class="slide__watermark">09</span>
+      <div class="slide__inner">
+        <span class="slide__eyebrow">La Escala</span>
+        <h2 class="slide__title">La Escala <span class="highlight">Fibonacci</span></h2>
+        <div class="slide__accent-line"></div>
+
+        <!-- Fibonacci Visual -->
+        <div class="fibonacci-visual">
+          <div class="fibonacci-item">
+            <div class="fibonacci-item__bar" style="height: 20px;"></div>
+            <span class="fibonacci-item__value">1</span>
+          </div>
+          <div class="fibonacci-item">
+            <div class="fibonacci-item__bar" style="height: 36px;"></div>
+            <span class="fibonacci-item__value">2</span>
+          </div>
+          <div class="fibonacci-item">
+            <div class="fibonacci-item__bar" style="height: 54px;"></div>
+            <span class="fibonacci-item__value">3</span>
+          </div>
+          <div class="fibonacci-item">
+            <div class="fibonacci-item__bar" style="height: 86px;"></div>
+            <span class="fibonacci-item__value">5</span>
+          </div>
+          <div class="fibonacci-item">
+            <div class="fibonacci-item__bar" style="height: 130px;"></div>
+            <span class="fibonacci-item__value">8</span>
+          </div>
+          <div class="fibonacci-item">
+            <div class="fibonacci-item__bar" style="height: 190px;"></div>
+            <span class="fibonacci-item__value">13</span>
+          </div>
+        </div>
+
+        <div class="slide__content">
+          <div class="slide__point">
+            <span class="slide__marker"></span>
+            <p class="slide__point-text">A mayor tamaño, mayor incertidumbre. Los intervalos amplios de Fibonacci protegen al cerebro de <strong>discusiones inútiles de falsa precisión.</strong></p>
+          </div>
+          <div class="slide__point">
+            <span class="slide__marker"></span>
+            <p class="slide__point-text">No usamos números seguidos (como 6 o 7) porque <strong>la mente no distingue diferencias tan pequeñas</strong> cuando el trabajo es grande.</p>
+          </div>
+          <div class="slide__point">
+            <span class="slide__marker"></span>
+            <p class="slide__point-text">Si algo es un <strong>13 o más</strong>, es demasiado grande: <strong>¡hay que romperlo en piezas más pequeñas!</strong> <em>(Spoiler: Se viene el Workshop de Slicing)</em></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ─── SLIDE 10 ─── -->
+    <section class="slide slide--exercise" id="slide-10">
+      <span class="slide__watermark">10</span>
+      <div class="slide__inner">
+        <span class="slide__eyebrow">Ejercicio 2</span>
+        <h2 class="slide__title">El Juego del <span class="highlight">Ordenamiento Relativo</span></h2>
+        <div class="slide__accent-line"></div>
+        <div class="slide__content">
+          <div class="slide__point">
+            <span class="slide__marker"></span>
+            <p class="slide__point-text">Comparar de forma relativa activa la <strong>memoria de reconocimiento</strong> (rápida y confiable).</p>
+          </div>
+          <div class="slide__point">
+            <span class="slide__marker"></span>
+            <p class="slide__point-text">Estimar de forma absoluta obliga a usar la <strong>imaginación constructiva</strong> (lenta y propensa a sesgos).</p>
+          </div>
+        </div>
+        <div class="slide__exercise-card">
+          <span class="slide__exercise-label">Misión · Breakout Rooms 15 min</span>
+          <p class="slide__exercise-text" style="margin-bottom: 16px;">Ordena estas tareas de <strong>menor a mayor complejidad:</strong></p>
+          <ol class="slide__task-list">
+            <li class="slide__task-item">Lavar una taza de café sucia.</li>
+            <li class="slide__task-item">Cambiar una bombilla/foco de luz quemado.</li>
+            <li class="slide__task-item">Pintar una habitación completa de tu casa.</li>
+            <li class="slide__task-item">Construir una casa de madera para el perro.</li>
+            <li class="slide__task-item">Escribir un correo electrónico formal al CEO de la compañía.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ─── SLIDE 11 ─── -->
+    <section class="slide" id="slide-11">
+      <span class="slide__watermark">11</span>
+      <div class="slide__inner">
+        <span class="slide__eyebrow">Herramienta</span>
+        <h2 class="slide__title"><span class="highlight">Planning Poker:</span> El juego de la alineación</h2>
+        <div class="slide__accent-line"></div>
+        <div class="slide__content">
+          <div class="slide__point">
+            <span class="slide__marker"></span>
+            <p class="slide__point-text"><strong>Regla de oro:</strong> Votación simultánea para evitar que el «líder» o el más rápido condicione al resto (evitamos el sesgo de anclaje).</p>
+          </div>
+          <div class="slide__point">
+            <span class="slide__marker"></span>
+            <p class="slide__point-text">Si hay <strong>consenso</strong>, avanzamos rápido.</p>
+          </div>
+          <div class="slide__point">
+            <span class="slide__marker"></span>
+            <p class="slide__point-text">Si hay diferencias extremas (un 1 y un 8), <strong>no promediamos:</strong> abrimos el debate para descubrir supuestos ocultos.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ─── SLIDE 12 ─── -->
+    <section class="slide" id="slide-12">
+      <span class="slide__watermark">12</span>
+      <div class="slide__inner">
+        <span class="slide__eyebrow">De puntos a fechas</span>
+        <h2 class="slide__title">De puntos abstractos a <span class="highlight">fechas reales:</span> La Velocidad</h2>
+        <div class="slide__accent-line"></div>
+        <div class="slide__content">
+          <div class="slide__point">
+            <span class="slide__marker"></span>
+            <p class="slide__point-text"><strong>Velocidad:</strong> El promedio de puntos que el equipo completa con éxito por Sprint.</p>
+          </div>
+          <div class="slide__point">
+            <span class="slide__marker"></span>
+            <p class="slide__point-text">Es una <strong>métrica empírica y real</strong>, no un deseo comercial.</p>
+          </div>
+        </div>
+        <div class="slide__example">
+          <span class="slide__example-title">Ejemplo práctico de planificación</span>
+          <div class="slide__example-row">
+            <span>Tamaño total del backlog</span>
+            <span><strong>100 puntos</strong></span>
+          </div>
+          <div class="slide__example-row">
+            <span>Velocidad estable del equipo</span>
+            <span><strong>25 pts / Sprint</strong></span>
+          </div>
+          <div class="slide__example-row slide__example-row--result">
+            <span>Pronóstico matemático</span>
+            <span>4 Sprints (100 / 25 = 4)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ─── SLIDE 13 ─── -->
+    <section class="slide" id="slide-13">
+      <span class="slide__watermark">13</span>
+      <div class="slide__inner">
+        <span class="slide__eyebrow">Protección</span>
+        <h2 class="slide__title">El <span class="highlight">«Slack»</span> — La holgura planificada que salva Sprints</h2>
+        <div class="slide__accent-line"></div>
+        <div class="slide__content">
+          <div class="slide__point">
+            <span class="slide__marker"></span>
+            <p class="slide__point-text">No llenamos el Sprint al <strong>cien por cien</strong> de nuestra capacidad teórica.</p>
+          </div>
+          <div class="slide__point">
+            <span class="slide__marker"></span>
+            <p class="slide__point-text">El <strong>Slack</strong> es espacio de maniobra planificado para absorber imprevistos.</p>
+          </div>
+          <div class="slide__point">
+            <span class="slide__marker"></span>
+            <p class="slide__point-text"><strong>Slack (Holgura Planificada):</strong> Se planifica colectivamente para tareas concretas (refactorización de código, pagar deuda técnica, investigar, etc) que actúan como amortiguador ante imprevistos.</p>
+          </div>
+          <div class="slide__point">
+            <span class="slide__marker"></span>
+            <p class="slide__point-text">Evita la <strong>Ley de Parkinson</strong> y el <strong>Síndrome del Estudiante</strong> (procrastinar hasta el final).</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ─── SLIDE 14 ─── -->
+    <section class="slide" id="slide-14">
+      <span class="slide__watermark">14</span>
+      <div class="slide__inner">
+        <span class="slide__eyebrow">Reglas</span>
+        <h2 class="slide__title">Las Tres Reglas <span class="highlight">Sagradas</span> para no romper el sistema</h2>
+        <div class="slide__accent-line"></div>
+        <div class="slide__rules">
+          <div class="slide__rule">
+            <span class="slide__rule-number">01</span>
+            <p class="slide__rule-text"><strong>¡No conviertas puntos a horas de manera fija!</strong> No digas <em>«1 punto = 8 horas»</em> o romperás la colaboración.</p>
+          </div>
+          <div class="slide__rule">
+            <span class="slide__rule-number">02</span>
+            <p class="slide__rule-text"><strong>¡No compares la velocidad de diferentes equipos!</strong> La velocidad de cada equipo es local y única.</p>
+          </div>
+          <div class="slide__rule">
+            <span class="slide__rule-number">03</span>
+            <p class="slide__rule-text"><strong>Estimar es para el equipo, no para vigilar la productividad individual.</strong> El éxito se mide en valor entregado al final del Sprint.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ─── SLIDE 15 ─── -->
+    <section class="slide slide--hero" id="slide-15">
+      <span class="slide__watermark">15</span>
+      <div class="slide__inner">
+        <span class="slide__eyebrow">Cierre · Próximos Pasos</span>
+        <h2 class="slide__title">Definamos la <span class="highlight">«Piedra Rosetta»</span></h2>
+        <div class="slide__accent-line"></div>
+        <div class="slide__content">
+          <div class="slide__point">
+            <span class="slide__marker"></span>
+            <p class="slide__point-text">Elegimos por consenso una <strong>historia de usuario real</strong> completada con éxito recientemente.</p>
+          </div>
+          <div class="slide__point">
+            <span class="slide__marker"></span>
+            <p class="slide__point-text">Le asignamos el valor base de <strong>3 puntos de historia.</strong></p>
+          </div>
+          <div class="slide__point">
+            <span class="slide__marker"></span>
+            <p class="slide__point-text">De ahora en adelante, cada nueva estimación se hará en base a la <strong>comparación con este estándar.</strong></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ─── SLIDE 16 ─── -->
+    <section class="slide" id="slide-16">
+      <span class="slide__watermark">16</span>
+      <div class="slide__inner">
+        <span class="slide__eyebrow">Cierre</span>
+        <h2 class="slide__title">Conclusiones y <span class="highlight">Aprendizaje Colectivo</span></h2>
+        <div class="slide__accent-line"></div>
+        
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 24px auto 36px auto; text-align: center;">
+          <p class="slide__prompt" style="font-size: clamp(1.4rem, 2.5vw, 2.2rem); color: var(--text-bright); font-weight: 600; margin: 0 0 12px 0; text-align: center; width: 100%;">El Ticket de Salida: Nuestro Aprendizaje Colectivo.</p>
+          <p class="slide__prompt-sub" style="font-size: 1.15rem; color: var(--accent); font-style: normal; margin-bottom: 24px;">En una sola frase en el chat: ¿Cuál es el cambio de mentalidad más importante que te llevas hoy?</p>
+        </div>
+
+        <div class="slide__exercise-card" style="border-left: 3px solid var(--accent); text-align: center; margin: 0 auto; max-width: 750px;">
+          <p class="slide__exercise-text" style="font-size: clamp(1.2rem, 2vw, 1.6rem); font-style: italic; color: var(--text-bright); line-height: 1.5; font-weight: 500;">
+            “Estimar es un acto de colaboración, no de administración.”
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ─── SLIDE 17 ─── -->
+    <section class="slide slide--hero" id="slide-17">
+      <span class="slide__watermark">17</span>
+      <div class="slide__inner">
+        <span class="slide__eyebrow">Fin</span>
+        <h1 class="slide__title" style="font-size: clamp(2.5rem, 5.5vw, 4.8rem); margin-bottom: 20px;">¡Muchas <span class="highlight">gracias!</span></h1>
+        <div class="slide__accent-line"></div>
+        <p class="slide__subtitle" style="font-size: 1.25rem; text-align: center; color: var(--text-primary);">Workshop · Estimación Ágil</p>
+      </div>
+    </section>
+
+  </div>
+  <!-- ===== END PRESENTATION ===== -->
+
+
+  <!-- ===== CONTROLS ===== -->
+  <div class="controls" id="controls">
+    <!-- Counter -->
+    <div class="controls__counter" id="slideCounter">
+      <span class="controls__counter-current" id="currentSlide">01</span>
+      <span> / </span>
+      <span id="totalSlides">17</span>
+    </div>
+
+    <!-- Navigation -->
+    <div class="controls__center">
+      <button class="controls__btn" id="btnPrev" title="Anterior (←)">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      </button>
+      <button class="controls__btn" id="btnNext" title="Siguiente (→)">
+        <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"></polyline></svg>
+      </button>
+    </div>
+
+    <!-- Toolbar -->
+    <div class="controls__toolbar">
+      <button class="controls__btn" id="btnNotes" title="Notas del facilitador (N)">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+      </button>
+      <div class="controls__separator"></div>
+      <button class="controls__btn" id="btnFullscreen" title="Pantalla completa (F)">
+        <svg viewBox="0 0 24 24"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg>
+      </button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
