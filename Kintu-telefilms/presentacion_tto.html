@@ -85,6 +85,7 @@ html, body {
   transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1);
   overflow-y: auto;
   overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 .slide.active {
@@ -163,7 +164,7 @@ html, body {
 }
 
 h1 {
-  font-size: clamp(32px, 4.5vw, 64px);
+  font-size: clamp(28px, 4.5vw, 64px);
   font-weight: 700;
   line-height: 1.08;
   letter-spacing: -0.03em;
@@ -172,7 +173,7 @@ h1 {
 }
 
 h2 {
-  font-size: clamp(24px, 3vw, 42px);
+  font-size: clamp(22px, 3vw, 42px);
   font-weight: 700;
   line-height: 1.12;
   letter-spacing: -0.025em;
@@ -185,7 +186,7 @@ h1 .em, h2 .em, h3 .em {
 }
 
 .subtitle {
-  font-size: clamp(15px, 1.4vw, 20px);
+  font-size: clamp(14px, 1.4vw, 20px);
   color: var(--optical-muted);
   font-weight: 300;
   line-height: 1.5;
@@ -375,8 +376,9 @@ h1 .em, h2 .em, h3 .em {
   inset-x: 0;
   height: 54px;
   z-index: 100;
-  background: rgba(5, 5, 5, 0.85);
-  backdrop-filter: blur(12px);
+  background: rgba(5, 5, 5, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border-top: 1px solid var(--void-border);
   display: flex;
   align-items: center;
@@ -425,8 +427,8 @@ h1 .em, h2 .em, h3 .em {
   background: var(--void-elevated);
   border: 1px solid var(--void-border);
   color: var(--optical);
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
   border-radius: 6px;
   cursor: pointer;
   display: flex;
@@ -456,6 +458,75 @@ h1 .em, h2 .em, h3 .em {
   width: 0%;
   z-index: 101;
   transition: width 0.3s ease;
+}
+
+/* ═══════════════════════════════════════════════════
+   RESPONSIVE DESIGN (MOBILE & TABLET OPTIMIZATION)
+   ═══════════════════════════════════════════════════ */
+
+@media (max-width: 992px) {
+  :root {
+    --slide-padding: clamp(16px, 4vw, 36px);
+    --slide-padding-y: clamp(20px, 3vh, 40px);
+  }
+
+  .grid-4 { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .grid-3 { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .grid-2 { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .timeline { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --slide-padding: 16px;
+    --slide-padding-y: 20px;
+  }
+
+  .slide {
+    padding-bottom: 84px; /* Otorga espacio para que la barra de navegación no solape las cards */
+    justify-content: flex-start; /* Permite scroll vertical fluido si el contenido sobrepasa la pantalla */
+    padding-top: 24px;
+  }
+
+  h1 { font-size: clamp(24px, 6.5vw, 34px); margin-bottom: 12px; }
+  h2 { font-size: clamp(20px, 5.5vw, 26px); margin-bottom: 10px; }
+  .subtitle { font-size: 14px; line-height: 1.45; margin-bottom: 16px; }
+
+  .grid-4, .grid-3, .grid-2, .timeline {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 12px;
+  }
+
+  .card {
+    padding: 16px;
+    border-radius: 8px;
+  }
+
+  .card-title { font-size: 16px; }
+  .card-body { font-size: 13px; line-height: 1.5; }
+
+  .gate-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 14px;
+  }
+
+  .nav-bar {
+    height: 56px;
+    padding: 0 16px;
+  }
+
+  .nav-brand {
+    font-size: 11px;
+  }
+
+  .nav-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 16px;
+  }
 }
 </style>
 </head>
