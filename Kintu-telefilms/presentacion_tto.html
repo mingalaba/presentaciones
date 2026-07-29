@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kintu Labs — Telefilms Group · Propuesta de Transformación Digital (TTO)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════
+   DESIGN SYSTEM — KINTU LABORATORY (VOID & OPTICAL)
+   ═══════════════════════════════════════════════════ */
+
+:root {
+  --void: #050505;
+  --void-elevated: #0A0A0A;
+  --void-surface: #111111;
+  --void-border: #1F1F1F;
+  --optical: #FAFAFA;
+  --optical-muted: #A0A0A0;
+  --optical-dim: #6B6B6B;
+  --grid-line: #161616;
+  --grid-line-bright: #252525;
+  
+  --accent: #D4FF00; /* Neon Lime */
+  --accent-dim: rgba(212, 255, 0, 0.12);
+  --accent-glow: rgba(212, 255, 0, 0.06);
+
+  --accent-blue: #4A90E2;
+  --accent-blue-dim: rgba(74, 144, 226, 0.12);
+  --accent-emerald: #00E676;
+  --accent-emerald-dim: rgba(0, 230, 118, 0.12);
+  --accent-purple: #A060FF;
+  --accent-purple-dim: rgba(160, 96, 255, 0.12);
+
+  --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'Space Mono', monospace;
+
+  --slide-padding: clamp(24px, 5vw, 72px);
+  --slide-padding-y: clamp(24px, 4vh, 56px);
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--void);
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--void);
+  color: var(--optical);
+  font-family: var(--font-display);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ═══════════════════════════════════════════════════
+   DECK & SLIDE ENGINE
+   ═══════════════════════════════════════════════════ */
+
+.deck {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--slide-padding-y) var(--slide-padding);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.slide.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.slide.active .reveal {
+  animation: revealUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes revealUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal { opacity: 0; }
+.reveal:nth-child(1) { animation-delay: 0.06s; }
+.reveal:nth-child(2) { animation-delay: 0.12s; }
+.reveal:nth-child(3) { animation-delay: 0.18s; }
+.reveal:nth-child(4) { animation-delay: 0.24s; }
+.reveal:nth-child(5) { animation-delay: 0.30s; }
+.reveal:nth-child(6) { animation-delay: 0.36s; }
+.reveal:nth-child(7) { animation-delay: 0.42s; }
+
+/* ═══════════════════════════════════════════════════
+   BACKGROUND GRID
+   ═══════════════════════════════════════════════════ */
+
+.tech-grid {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 50px 50px;
+  background-position: center center;
+  opacity: 0.65;
+}
+
+.tech-grid::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 85% 65% at 50% 50%, transparent 35%, var(--void) 100%);
+}
+
+/* ═══════════════════════════════════════════════════
+   TYPOGRAPHY & TAGS
+   ═══════════════════════════════════════════════════ */
+
+.tag {
+  font-family: var(--font-mono);
+  font-size: clamp(10px, 1vw, 12px);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tag::before {
+  content: '//';
+  font-weight: 700;
+  color: var(--accent);
+}
+
+h1 {
+  font-size: clamp(32px, 4.5vw, 64px);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: var(--optical);
+  margin-bottom: 16px;
+}
+
+h2 {
+  font-size: clamp(24px, 3vw, 42px);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  color: var(--optical);
+  margin-bottom: 14px;
+}
+
+h1 .em, h2 .em, h3 .em {
+  color: var(--accent);
+}
+
+.subtitle {
+  font-size: clamp(15px, 1.4vw, 20px);
+  color: var(--optical-muted);
+  font-weight: 300;
+  line-height: 1.5;
+  max-width: 840px;
+  margin-bottom: 24px;
+}
+
+/* ═══════════════════════════════════════════════════
+   CARDS & GRIDS
+   ═══════════════════════════════════════════════════ */
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 16px;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 16px;
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.card {
+  background: var(--void-elevated);
+  border: 1px solid var(--void-border);
+  border-radius: 10px;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.card:hover {
+  border-color: var(--grid-line-bright);
+  transform: translateY(-2px);
+}
+
+.card-accent {
+  border-color: rgba(212, 255, 0, 0.3);
+  background: linear-gradient(145deg, var(--void-elevated), rgba(212, 255, 0, 0.03));
+}
+
+.card-header-badge {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--optical);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.card-body {
+  font-size: 14px;
+  color: var(--optical-muted);
+  line-height: 1.55;
+}
+
+/* ═══════════════════════════════════════════════════
+   TRIAD & TEAM BADGES
+   ═══════════════════════════════════════════════════ */
+
+.triad-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.badge-cerebro { background: var(--accent-purple-dim); color: #C490FF; border: 1px solid rgba(160, 96, 255, 0.3); }
+.badge-alma { background: var(--accent-emerald-dim); color: #00E676; border: 1px solid rgba(0, 230, 118, 0.3); }
+.badge-musculo { background: var(--accent-blue-dim); color: #64B5F6; border: 1px solid rgba(74, 144, 226, 0.3); }
+
+/* ═══════════════════════════════════════════════════
+   ROADMAP & TIMELINE STYLES
+   ═══════════════════════════════════════════════════ */
+
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.step-card {
+  background: var(--void-surface);
+  border: 1px solid var(--void-border);
+  border-radius: 8px;
+  padding: 20px;
+  position: relative;
+}
+
+.step-num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--accent);
+  margin-bottom: 8px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.step-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--optical);
+  margin-bottom: 8px;
+}
+
+.step-list {
+  list-style: none;
+  font-size: 13px;
+  color: var(--optical-muted);
+  line-height: 1.5;
+}
+
+.step-list li {
+  margin-bottom: 6px;
+  position: relative;
+  padding-left: 14px;
+}
+
+.step-list li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+.gate-banner {
+  background: linear-gradient(90deg, rgba(212,255,0,0.08) 0%, rgba(212,255,0,0.02) 100%);
+  border: 1px dashed var(--accent);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.gate-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  letter-spacing: 0.08em;
+}
+
+.gate-desc {
+  font-size: 13px;
+  color: var(--optical-muted);
+  line-height: 1.4;
+}
+
+/* ═══════════════════════════════════════════════════
+   NAVIGATION BAR & BRANDING
+   ═══════════════════════════════════════════════════ */
+
+.nav-bar {
+  position: fixed;
+  bottom: 0;
+  inset-x: 0;
+  height: 54px;
+  z-index: 100;
+  background: rgba(5, 5, 5, 0.85);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--void-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--slide-padding);
+}
+
+.nav-brand {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--optical-muted);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brand-cursor {
+  display: inline-block;
+  width: 6px;
+  height: 11px;
+  background: var(--accent);
+  margin-left: 2px;
+  animation: blink 1.2s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-progress {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--accent);
+  margin-right: 8px;
+}
+
+.nav-btn {
+  background: var(--void-elevated);
+  border: 1px solid var(--void-border);
+  color: var(--optical);
+  width: 34px;
+  height: 34px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.nav-btn:hover:not(:disabled) {
+  background: var(--accent);
+  color: var(--void);
+  border-color: var(--accent);
+}
+
+.nav-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.progress-bar-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: var(--accent);
+  width: 0%;
+  z-index: 101;
+  transition: width 0.3s ease;
+}
+</style>
+</head>
+<body>
+
+<div class="progress-bar-top" id="progressBar"></div>
+<div class="tech-grid"></div>
+
+<div class="deck">
+
+  <!-- ═══════════════════════════════════════════════════
+       SLIDE 1: PORTADA EJECUTIVA CON LOGO KINTU OFICIAL
+       ═══════════════════════════════════════════════════ -->
+  <div class="slide active">
+    <div class="reveal" style="margin-bottom: 20px;">
+      <svg width="220" height="50" viewBox="0 0 350 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g transform="translate(15, 65)" font-family="'Space Mono', monospace" font-weight="bold">
+          <text fill="#6B6B6B" font-size="48" letter-spacing="-2">[</text>
+          <text fill="#FAFAFA" font-size="48" x="28" letter-spacing="-1">KINTU</text>
+          <text fill="#6B6B6B" font-size="48" x="192" letter-spacing="-2">]</text>
+          <rect x="228" y="-38" width="14" height="38" fill="#D4FF00" />
+        </g>
+      </svg>
+    </div>
+
+    <div class="tag reveal">PROPUESTA ESTRATÉGICA · TELEFILMS GROUP</div>
+    <h1 class="reveal">Transformación Digital <span class="em">& Gobernanza Operativa</span></h1>
+    <p class="subtitle reveal">
+      Plan de Aceleración de Infraestructura de Datos, Estandarización de ERPs y Automatización de Reportes para <strong>Telefilms Group</strong> en 8 países.
+    </p>
+
+    <div class="grid-3 reveal">
+      <div class="card">
+        <div class="card-header-badge">[01] DATA & REPORTING</div>
+        <div class="card-title">Unificación de Datos Regionales</div>
+        <div class="card-body">Data Lake agnóstico cloud y consolidador en tiempo real accesible según perfil directivo y operativo.</div>
+      </div>
+      <div class="card">
+        <div class="card-header-badge">[02] ERPs & PROCESOS</div>
+        <div class="card-title">Estandarización Operativa</div>
+        <div class="card-body">Relevamiento y alineación de reglas de negocio entre los ~10 ERPs de las 8 distribuidoras regionales.</div>
+      </div>
+      <div class="card">
+        <div class="card-header-badge">[03] MODELO AGILE</div>
+        <div class="card-title">Ejecución de Bajo Riesgo</div>
+        <div class="card-body">Oficina de Transformación Tercerizada por Suscripción Trimestral con entregables garantizados al Día 90.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       SLIDE 2: DIAGNÓSTICO OPERATIVO & PAIN POINTS
+       ═══════════════════════════════════════════════════ -->
+  <div class="slide">
+    <div class="tag reveal">DIAGNÓSTICO OPERATIVO · TELEFILMS GROUP</div>
+    <h2 class="reveal">El Desafío Operativo: <span class="em">Crecimiento vs. Fragmentación</span></h2>
+    <p class="subtitle reveal">
+      Telefilms domina la industria del entretenimiento en la región, pero la gestión de información opera bajo islas heterogéneas de software y procesos manuales.
+    </p>
+
+    <div class="grid-2 reveal">
+      <div class="card">
+        <div class="card-header-badge">[01] FRICCIÓN EN DATOS & GESTIÓN FINANCIERA</div>
+        <div class="card-title">Sistemas Desconectados & Reportes Manuales</div>
+        <div class="card-body">
+          <ul style="list-style: none; line-height: 1.8;">
+            <li>— <strong>Fragmentación de Software:</strong> ~10 ERPs desconectados (SAP B1, Oppen, Softland, Memory, Panda, Sage).</li>
+            <li>— <strong>Trabajo Manual Repetitivo:</strong> Horas semanales invertidas por equipos regionales consolidando datos en hojas de cálculo.</li>
+            <li>— <strong>Ceguera en Taquilla de Distribución:</strong> Dificultad para conciliar en tiempo real los ingresos de salas recibidos por subdistribuidores y filiales.</li>
+            <li>— <strong>Liquidación a Productores:</strong> Cálculos complejos de regalías por contrato que toman demasiado tiempo por falta de reglas unificadas.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header-badge">[02] FRICCIÓN CULTURAL & GOBERNANZA</div>
+        <div class="card-title">Estandarización & Adopción de Equipos</div>
+        <div class="card-body">
+          <ul style="list-style: none; line-height: 1.8;">
+            <li>— <strong>Hábitos Legacy:</strong> Equipos apoyados en planillas de cálculo paralelas por desconfianza en los reportes actuales.</li>
+            <li>— <strong>Disparidad Operativa:</strong> Reglas de negocio dispares entre las 8 distribuidoras regionales.</li>
+            <li>— <strong>Prevención de Riesgo Tecnológico:</strong> Necesidad de validar la arquitectura y los prototipos visuales antes de comprometer inversiones masivas en desarrollo.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       SLIDE 3: QUIÉNES SOMOS (CON LOGO OFICIAL KINTU)
+       ═══════════════════════════════════════════════════ -->
+  <div class="slide">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+      <div class="tag reveal">EL PARTNER ESTRATÉGICO · KINTU LABS</div>
+      <div class="reveal">
+        <svg width="150" height="35" viewBox="0 0 350 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g transform="translate(15, 65)" font-family="'Space Mono', monospace" font-weight="bold">
+            <text fill="#6B6B6B" font-size="44" letter-spacing="-2">[</text>
+            <text fill="#FAFAFA" font-size="44" x="28" letter-spacing="-1">KINTU</text>
+            <text fill="#6B6B6B" font-size="44" x="192" letter-spacing="-2">]</text>
+            <rect x="228" y="-35" width="14" height="35" fill="#D4FF00" />
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <h2 class="reveal">Más que Proveedores de Software: <span class="em">Socios en Infraestructura</span></h2>
+    <p class="subtitle reveal">
+      En Kintu transformamos la manera en que las organizaciones regionales complejas toman decisiones, integrando visión estratégica de negocio, cultura y tecnología.
+    </p>
+
+    <div class="grid-3 reveal">
+      <div class="card card-accent">
+        <div class="card-header-badge">Enfoque de Negocio</div>
+        <div class="card-title">Visión Co-Founder</div>
+        <div class="card-body">
+          Nos involucramos directamente en la rentabilidad y la eficiencia operativa de Telefilms. No vendemos horas de programación; garantizamos impacto tangible.
+        </div>
+      </div>
+
+      <div class="card card-accent">
+        <div class="card-header-badge">New Way of Work</div>
+        <div class="card-title">Gobernanza & Cambio</div>
+        <div class="card-body">
+          Resolvemos el nudo donde fracasan el 70% de las iniciativas corporativas: en la resistencia cultural del equipo operativo y la falta de estandarización.
+        </div>
+      </div>
+
+      <div class="card card-accent">
+        <div class="card-header-badge">Compromiso de Autonomía</div>
+        <div class="card-title">Retiro por Impacto</div>
+        <div class="card-body">
+          Instalamos la arquitectura y capacitamos a sus equipos para que operen con total autonomía. Nos retiramos cuando el retorno de inversión es medible.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       SLIDE 4: EL PRODUCTO SOLUCIÓN (KINTU TTO)
+       ═══════════════════════════════════════════════════ -->
+  <div class="slide">
+    <div class="tag reveal">EL VEHÍCULO DE EJECUCIÓN · PRODUCTO KINTU TTO</div>
+    <h2 class="reveal">Transformation Task Force <span class="em">as a Service</span></h2>
+    <p class="subtitle reveal">
+      El vehículo comercial: una Célula de Transformación por Suscripción Trimestral que asume el 100% de la dirección y ejecución del proyecto sin sobrecargar su estructura.
+    </p>
+
+    <div class="grid-3 reveal">
+      <div class="card">
+        <div class="card-header-badge">Estructura Adaptativa</div>
+        <div class="card-title">Equipo Dinámico (Squad)</div>
+        <div class="card-body">
+          Modulamos internamente la asignación de especialistas en ingeniería de datos, procesos, arquitectura y UX según el estadio del proyecto.
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header-badge">Valor Inmediato</div>
+        <div class="card-title">Intervención "In-Flight" Directa</div>
+        <div class="card-body">
+          Optimización inmediata en directo de procesos y plantillas en las filiales durante el relevamiento, sin esperar a la finalización del software.
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header-badge">Bajo Riesgo</div>
+        <div class="card-title">Decision Gate al Día 90</div>
+        <div class="card-body">
+          Sin compromisos a 18 meses a ciegas. Al finalizar el primer trimestre, Telefilms cuenta con los planos y prototipos completos para decidir el siguiente paso.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       SLIDE 5: LA ARQUITECTURA DE LAS 3 CAPAS (CONCEPTUAL)
+       ═══════════════════════════════════════════════════ -->
+  <div class="slide">
+    <div class="tag reveal">ARQUITECTURA DE VALOR · CEREBRO + ALMA + MÚSCULO</div>
+    <h2 class="reveal">La Tríada Kintu: <span class="em">Estrategia, Adopción e Ingeniería</span></h2>
+    <p class="subtitle reveal">
+      La mayoría de los proyectos tecnológicos fracasan por aislar la tecnología de la estrategia y de las personas. Nuestra arquitectura resuelve las 3 dimensiones en simultáneo.
+    </p>
+
+    <div class="grid-3 reveal">
+      <div class="card">
+        <span class="triad-badge badge-cerebro">Capa Cerebro</span>
+        <div class="card-title">Estrategia & Procesos</div>
+        <div class="card-body">
+          Dirección estratégica de arquitectura empresarial, evaluación del ecosistema de ERPs y estandarización regional de reglas de negocio para asegurar que cada desarrollo responda directamente a objetivos de rentabilidad.
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="triad-badge badge-alma">Capa Alma</span>
+        <div class="card-title">Adopción & Cambio Cultural</div>
+        <div class="card-body">
+          Facilitación con líderes regionales, gestión del cambio organizacional y alineación del trabajo operativo hacia una Única Fuente de Verdad, acompañando la transición hacia sistemas unificados.
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="triad-badge badge-musculo">Capa Músculo</span>
+        <div class="card-title">Ingeniería & Software</div>
+        <div class="card-body">
+          Construcción de pipelines de datos, integración técnica entre sistemas, prototipado interactivo de experiencia de usuario (UX) e implementación de productos digitales escalables y seguros.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       SLIDE 6: GOBERNANZA & VALOR DE NEGOCIO
+       ═══════════════════════════════════════════════════ -->
+  <div class="slide">
+    <div class="tag reveal">METODOLOGÍA OPERATIVA · GOBERNANZA POR RESULTADOS</div>
+    <h2 class="reveal">Sprints de Enfoque <span class="em">& Resultados Cuantificables</span></h2>
+    <p class="subtitle reveal">
+      Alineamos la ejecución técnica con las prioridades reales del negocio, estableciendo metas claras y medibles junto a los líderes de Telefilms.
+    </p>
+
+    <div class="grid-2 reveal">
+      <div class="card">
+        <div class="card-header-badge">[01] ALINEACIÓN CONTINUA</div>
+        <div class="card-title">Sprints de Enfoque con Stakeholders</div>
+        <div class="card-body">
+          El Director de Transformación Digital de Kintu facilita sesiones periódicas de alineación junto a los <strong>Stakeholders del proyecto</strong>. 
+          En ellas co-definimos el rumbo de cada ciclo. Si una prioridad exige virar la atención de tecnología a procesos, el Sprint pivota dinámicamente sin trámites ni fricción contractual.
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header-badge">[02] VALOR DE NEGOCIO</div>
+        <div class="card-title">Co-Definición de KPIs, Hipótesis & ROI</div>
+        <div class="card-body">
+          Antes de iniciar cada desarrollo, acordamos en conjunto los <strong>KPIs a impactar, las hipótesis de cambio operativo y el retorno esperado</strong>. 
+          Evaluamos los resultados según la automatización de la taquilla regional, la velocidad de liquidación y la confiabilidad de los reportes, garantizando valor real en cada entrega.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       SLIDE 7: DIFERENCIACIÓN COMPETITIVA
+       ═══════════════════════════════════════════════════ -->
+  <div class="slide">
+    <div class="tag reveal">POSICIONAMIENTO ÚNICO · POR QUÉ KINTU</div>
+    <h2 class="reveal">Un Enfoque Diseñado <span class="em">para Desbloquear Complejidad</span></h2>
+    <p class="subtitle reveal">
+      Superamos las limitaciones de las consultoras tradicionales (que entregan diagnósticos en PDF sin código) y de las Software Factories (que programan a ciegas sin entender el negocio).
+    </p>
+
+    <div class="grid-3 reveal">
+      <div class="card">
+        <div class="card-header-badge">[01] ENTREGABLES ACTIVOS</div>
+        <div class="card-title">Código & Prototipos Navegables</div>
+        <div class="card-body">
+          No nos limitamos a diagnósticos teóricos. Entregamos prototipos navegables interactivos que permiten a la dirección visualizar la solución funcional antes de desarrollar, junto a la arquitectura de datos y el código fuente.
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header-badge">[02] ADOPCIÓN OPERATIVA</div>
+        <div class="card-title">Tecnología Alineada a Procesos</div>
+        <div class="card-body">
+          No construimos software sobre procesos desordenados. Intervenimos en la cultura operacional y la estandarización de reglas de negocio para asegurar que el sistema se adopte naturalmente.
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header-badge">[03] AGILIDAD SIN FRICCIÓN</div>
+        <div class="card-title">Gestión Evolutiva de Alcance</div>
+        <div class="card-body">
+          Los cambios de prioridad no representan frenos contractuales ni adicionales costosos. Se gestionan de forma continua dentro del backlog trimestral de la suscripción.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       SLIDE 8: ROADMAP DE TRANSFORMACIÓN
+       ═══════════════════════════════════════════════════ -->
+  <div class="slide">
+    <div class="tag reveal">ROADMAP DE TRANSFORMACIÓN · TRIMESTRE 1 & FASE 2</div>
+    <h2 class="reveal">Roadmap de Ejecución <span class="em">& Entregables al Día 90</span></h2>
+
+    <div class="timeline reveal">
+      <div class="step-card">
+        <div class="step-num">MES 1 & 2 • TRACK DATA & REPORTING</div>
+        <div class="step-title">Blueprint & Prototipado</div>
+        <p style="font-size: 11px; color: var(--accent); margin-bottom: 10px; font-family: var(--font-mono);">Discovery Metodológico: 50 Entrevistas</p>
+        <ul class="step-list">
+          <li>Blueprint de Data Lake agnóstico Cloud (TO-BE).</li>
+          <li>Backlog de Reportes Priorizados.</li>
+          <li>Prototipos Navegables del Consolidador en Tiempo Real según perfil.</li>
+          <li>Indicadores de Éxito del Proyecto (KPIs & ROI).</li>
+          <li>Evaluación Financiera de infraestructura y Tokens IA.</li>
+        </ul>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">MES 3 • TRACK ERPs & PROCESOS</div>
+        <div class="step-title">Inicio de Assessment & Diagnóstico</div>
+        <p style="font-size: 11px; color: var(--accent); margin-bottom: 10px; font-family: var(--font-mono);">Lanzamiento de relevamiento regional (20 entrevistas)</p>
+        <ul class="step-list">
+          <li>Inicio del Assessment del ecosistema de ERPs (SAP B1, Oppen, Softland, Memory).</li>
+          <li>Intervención "In-Flight" en directo sobre planillas y flujos simples.</li>
+          <li>Mapeo de procesos y Backlog inicial de mejoras.</li>
+          <li>Dimensionamiento previo para definir la profundidad del Roadmap en Fase 2.</li>
+        </ul>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">FASE 2 (MESES 4 A 12 - TENTATIVO)</div>
+        <div class="step-title">Construcción & Assessment ERP Continuo</div>
+        <p style="font-size: 11px; color: var(--accent); margin-bottom: 10px; font-family: var(--font-mono);">Ejecución iterativa por suscripción TTO</p>
+        <ul class="step-list">
+          <li><strong>Trimestre 2:</strong> Data Lake & Consolidador Taquilla en Prod + Continuidad Assessment ERP por áreas.</li>
+          <li><strong>Trimestre 3:</strong> Bot IA Conversacional + Re-ingeniería profunda de procesos ERPs.</li>
+          <li><strong>Trimestre 4:</strong> Estandarización total, Medición ROI & Handover.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="gate-banner reveal">
+      <div>
+        <div class="gate-title">PUERTA DE DECISIÓN AL DÍA 90 (DECISION GATE)</div>
+        <div class="gate-desc">Al día 90, con el Blueprint, los Prototipos Navegables y el dimensionamiento inicial del ERP en mano, Telefilms decide: Opción A (Continuar suscripción TTO para construir iterativamente y profundizar ERPs) u Opción B (Cotizar construcción a Precio Cerrado sobre el Blueprint).</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       SLIDE 9: EQUIPO ASIGNADO
+       ═══════════════════════════════════════════════════ -->
+  <div class="slide">
+    <div class="tag reveal">RECURSOS HUMANOS · CÉLULA TTO</div>
+    <h2 class="reveal">Estructura de la Célula <span class="em">de Transformación</span></h2>
+    <p class="subtitle reveal">
+      Un equipo multidisciplinario senior que cubre estrategia, gestión de producto, cambio organizacional e ingeniería de datos.
+    </p>
+
+    <div class="grid-3 reveal">
+      <div class="card">
+        <span class="triad-badge badge-cerebro">Capa Cerebro</span>
+        <div class="card-title">Director de Transformación</div>
+        <div class="card-body">
+          <strong>Dirección Digital (30% PT)</strong><br>
+          Dirección estratégica del proyecto, alineación con la junta directiva y gobernanza de innovación.
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="triad-badge badge-cerebro">Capa Cerebro</span>
+        <div class="card-title">Product Manager</div>
+        <div class="card-body">
+          <strong>Gestión de Producto (40% PT)</strong><br>
+          Priorización del backlog, gestión de requerimientos, definición de Sprints y alineación continua con Stakeholders.
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="triad-badge badge-alma">Capa Alma</span>
+        <div class="card-title">Consultor de Procesos & Agile Coach</div>
+        <div class="card-body">
+          <strong>Procesos & Cambio (50% PT)</strong><br>
+          Re-ingeniería de procesos ERPs, agilidad organizacional y liderazgo ejecutivo de la gestión del cambio cultural.
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-2 reveal" style="margin-top: 16px;">
+      <div class="card">
+        <span class="triad-badge badge-musculo">Capa Músculo</span>
+        <div class="card-title">Senior Data Engineer</div>
+        <div class="card-body">
+          <strong>Ingeniería de Datos (100% FT)</strong><br>
+          Diseño del Blueprint de Data Lake agnóstico Cloud, conectores ERPs y pipelines ETL.
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="triad-badge badge-musculo">Capa Músculo</span>
+        <div class="card-title">Tech Lead & Designer</div>
+        <div class="card-body">
+          <strong>Arquitectura & UX/UI (50% PT)</strong><br>
+          Arquitectura Cloud agnóstica (35% PT) y prototipado interactivo navegable (25% PT).
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       SLIDE 10: INVERSIÓN COMERCIAL & LOGO DESTACADO
+       ═══════════════════════════════════════════════════ -->
+  <div class="slide">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+      <div class="tag reveal">CONDICIONES COMERCIALES · INVERSIÓN</div>
+      <div class="reveal">
+        <svg width="150" height="35" viewBox="0 0 350 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g transform="translate(15, 65)" font-family="'Space Mono', monospace" font-weight="bold">
+            <text fill="#6B6B6B" font-size="44" letter-spacing="-2">[</text>
+            <text fill="#FAFAFA" font-size="44" x="28" letter-spacing="-1">KINTU</text>
+            <text fill="#6B6B6B" font-size="44" x="192" letter-spacing="-2">]</text>
+            <rect x="228" y="-35" width="14" height="35" fill="#D4FF00" />
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <h2 class="reveal">Esquema de Inversión <span class="em">& Garantías Corporativas</span></h2>
+
+    <div class="grid-2 reveal">
+      <div class="card card-accent">
+        <div class="card-header-badge">Suscripción Célula TTO</div>
+        <div class="card-title" style="font-size: 24px; color: var(--accent);">USD 28.000 + IVA / mes</div>
+        <div class="card-body" style="font-size: 15px; margin-top: 12px;">
+          Contratación por Periodos Trimestrales.
+          <br><br>
+          <strong>Inversión Fase 1 Completa (Meses 1 a 3):</strong><br>
+          <span style="font-size: 20px; font-weight: 700; color: var(--optical);">USD 84.000 + IVA Total</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header-badge">Garantías del Servicio</div>
+        <div class="card-body">
+          <ul style="list-style: none; line-height: 1.7; font-size: 13px;">
+            <li>— <strong>Propiedad Intelectual 100%:</strong> Todo código, arquitectura y prototipos navegables son propiedad exclusiva de Telefilms desde el día 1.</li>
+            <li>— <strong>Soporte Productivo Incluido:</strong> Mantenimiento correctivo durante la vigencia de la suscripción.</li>
+            <li>— <strong>Off-Ramp Flexible:</strong> Opción de migrar a un plan de <em>Soporte & Evolutivo Light (Bolsa Ondemand)</em> si se pausa la suscripción.</li>
+            <li>— <strong>Cero Timesheets:</strong> Evaluación fundada en Demos Bisemanales y métricas de ROI.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       SLIDE 11: PRÓXIMOS PASOS
+       ═══════════════════════════════════════════════════ -->
+  <div class="slide">
+    <div class="tag reveal">PLAN DE INICIO · SIGUIENTES PASOS</div>
+    <h2 class="reveal">Plan de Arranque <span class="em">para el Inicio de Operaciones</span></h2>
+    <p class="subtitle reveal">
+      Un proceso ágil de 4 pasos para comenzar la transformación sin fricción.
+    </p>
+
+    <div class="grid-4 reveal">
+      <div class="card">
+        <div class="step-num">PASO 01</div>
+        <div class="card-title">Alineación Directiva</div>
+        <div class="card-body">Sesión metodológica final con la Dirección General de Telefilms.</div>
+      </div>
+
+      <div class="card">
+        <div class="step-num">PASO 02</div>
+        <div class="card-title">Acuerdo TTO</div>
+        <div class="card-body">Firma del compromiso comercial para el Trimestre 1.</div>
+      </div>
+
+      <div class="card">
+        <div class="step-num">PASO 03</div>
+        <div class="card-title">Kick-Off Regional</div>
+        <div class="card-body">Presentación de la Célula TTO a los líderes en los 8 países.</div>
+      </div>
+
+      <div class="card">
+        <div class="step-num">PASO 04</div>
+        <div class="card-title">Inicio del Discovery</div>
+        <div class="card-body">Relevamiento técnico, mapa de datos y entrevistas operativas iniciales.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       SLIDE 12: SLIDE DE CIERRE EJECUTIVO CON BRANDING KINTU
+       ═══════════════════════════════════════════════════ -->
+  <div class="slide">
+    <div class="reveal" style="margin-bottom: 16px;">
+      <svg width="220" height="50" viewBox="0 0 350 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g transform="translate(15, 65)" font-family="'Space Mono', monospace" font-weight="bold">
+          <text fill="#6B6B6B" font-size="48" letter-spacing="-2">[</text>
+          <text fill="#FAFAFA" font-size="48" x="28" letter-spacing="-1">KINTU</text>
+          <text fill="#6B6B6B" font-size="48" x="192" letter-spacing="-2">]</text>
+          <rect x="228" y="-38" width="14" height="38" fill="#D4FF00" />
+        </g>
+      </svg>
+    </div>
+
+    <div class="tag reveal">ESTRATEGIA & INFRAESTRUCTURA DE DATOS</div>
+    <h1 class="reveal">Transformemos la Operación <span class="em">de Telefilms Group</span></h1>
+    <p class="subtitle reveal">
+      Construyamos juntos la infraestructura de datos y procesos que sostendrá el liderazgo de Telefilms en la región durante los próximos años.
+    </p>
+
+    <div class="grid-2 reveal" style="margin-top: 20px;">
+      <div class="card card-accent" style="padding: 28px;">
+        <div class="card-header-badge">COMPROMISO DE VALOR</div>
+        <div class="card-title" style="font-size: 20px;">Gobernanza Digital Sin Riesgo</div>
+        <div class="card-body" style="font-size: 14px; margin-top: 10px; line-height: 1.6;">
+          Días 90 con entregables tangibles, prototipos navegables y arquitectura funcional. Evaluamos resultados reales desde el primer Sprint.
+        </div>
+      </div>
+
+      <div class="card" style="padding: 28px; display: flex; flex-direction: column; justify-content: center; border-color: rgba(212, 255, 0, 0.3);">
+        <div class="card-header-badge" style="color: var(--accent);">DECISIÓN DE VALOR</div>
+        <div class="card-title" style="font-size: 18px; line-height: 1.35; color: var(--optical);">
+          Si este es el modelo de aceleración y bajo riesgo que Telefilms necesita para unificar sus datos y procesos, ¿qué punto necesitamos definir hoy para dar el primer paso?
+        </div>
+        <div class="card-body" style="font-size: 13px; margin-top: 12px; color: var(--optical-muted); line-height: 1.5;">
+          Estamos listos para coordinar la alineación directiva y desplegar el Discovery regional de inmediato.
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="nav-bar">
+  <span class="nav-brand">
+    <span style="color: var(--optical-dim); font-weight: 700;">[</span>
+    <span style="color: var(--optical); font-weight: 700;">KINTU</span>
+    <span style="color: var(--optical-dim); font-weight: 700;">]</span>
+    <span class="brand-cursor"></span>
+    <span style="margin-left: 6px; color: var(--optical-muted);">· Telefilms Group</span>
+  </span>
+  <div class="nav-controls">
+    <span class="nav-progress" id="navProgress">01 / 12</span>
+    <button class="nav-btn" id="btnPrev" aria-label="Slide anterior" disabled>←</button>
+    <button class="nav-btn" id="btnNext" aria-label="Siguiente slide">→</button>
+    <button class="nav-btn" id="btnFs" aria-label="Pantalla completa">⛶</button>
+  </div>
+</div>
+
+<script>
+(function() {
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  let current = 0;
+
+  const progressBar = document.getElementById('progressBar');
+  const navProgress = document.getElementById('navProgress');
+  const btnPrev = document.getElementById('btnPrev');
+  const btnNext = document.getElementById('btnNext');
+  const btnFs = document.getElementById('btnFs');
+
+  function pad(n) { return String(n).padStart(2, '0'); }
+
+  function goTo(index) {
+    if (index < 0 || index >= total) return;
+    slides[current].classList.remove('active');
+    slides[index].querySelectorAll('.reveal').forEach(el => {
+      el.style.animation = 'none';
+      el.offsetHeight;
+      el.style.animation = '';
+    });
+    slides[index].classList.add('active');
+    current = index;
+    updateUI();
+  }
+
+  function updateUI() {
+    navProgress.textContent = pad(current + 1) + ' / ' + pad(total);
+    btnPrev.disabled = current === 0;
+    btnNext.disabled = current === total - 1;
+    progressBar.style.width = ((current + 1) / total * 100) + '%';
+  }
+
+  function next() { goTo(current + 1); }
+  function prev() { goTo(current - 1); }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
+      e.preventDefault();
+      next();
+    }
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      prev();
+    }
+    if (e.key === 'Home') { e.preventDefault(); goTo(0); }
+    if (e.key === 'End') { e.preventDefault(); goTo(total - 1); }
+    if (e.key === 'f' || e.key === 'F') { toggleFullscreen(); }
+  });
+
+  btnPrev.addEventListener('click', prev);
+  btnNext.addEventListener('click', next);
+
+  let touchStartX = 0;
+  document.addEventListener('touchstart', function(e) {
+    touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+  document.addEventListener('touchend', function(e) {
+    const diff = touchStartX - e.changedTouches[0].screenX;
+    if (Math.abs(diff) > 50) {
+      diff > 0 ? next() : prev();
+    }
+  }, { passive: true });
+
+  function toggleFullscreen() {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen().catch(() => {});
+    } else {
+      document.exitFullscreen().catch(() => {});
+    }
+  }
+  btnFs.addEventListener('click', toggleFullscreen);
+
+  updateUI();
+})();
+</script>
+</body>
+</html>
