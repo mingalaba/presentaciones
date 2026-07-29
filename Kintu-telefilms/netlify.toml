@@ -1,0 +1,3 @@
+# Netlify Configuration for Kintu-telefilms presentation
+[build]
+  publish = "."
