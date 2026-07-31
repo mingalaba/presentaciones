@@ -17,6 +17,7 @@
   --optical-muted: #A0A0A0;
   --accent: #D4FF00;
   --accent-purple: #A060FF;
+  --accent-blue: #4A90E2;
   --font-display: 'Outfit', sans-serif;
   --font-mono: 'Space Mono', monospace;
 }
@@ -25,7 +26,7 @@
 
 body {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   background: var(--void);
   color: var(--optical);
   font-family: var(--font-display);
@@ -33,8 +34,8 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 40px;
-  overflow: hidden;
+  padding: 40px 20px;
+  overflow-x: hidden;
 }
 
 .tech-grid {
@@ -59,7 +60,7 @@ body {
 .container {
   position: relative;
   z-index: 1;
-  max-width: 900px;
+  max-width: 1040px;
   width: 100%;
   text-align: center;
 }
@@ -83,36 +84,40 @@ body {
 }
 
 h1 {
-  font-size: clamp(32px, 4vw, 56px);
+  font-size: clamp(32px, 4vw, 52px);
   font-weight: 700;
   letter-spacing: -0.03em;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 .em { color: var(--accent); }
 
 p.subtitle {
-  font-size: 18px;
+  font-size: 17px;
   color: var(--optical-muted);
   font-weight: 300;
-  margin-bottom: 40px;
-  max-width: 700px;
+  margin-bottom: 36px;
+  max-width: 740px;
   margin-left: auto;
   margin-right: auto;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
   text-align: left;
+}
+
+@media (max-width: 900px) {
+  .grid { grid-template-columns: 1fr; }
 }
 
 .card-link {
   background: var(--void-elevated);
   border: 1px solid var(--void-border);
   border-radius: 12px;
-  padding: 32px;
+  padding: 28px;
   text-decoration: none;
   color: var(--optical);
   transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
@@ -129,9 +134,14 @@ p.subtitle {
   background: linear-gradient(145deg, var(--void-elevated), rgba(212, 255, 0, 0.04));
 }
 
+.card-link.highlight {
+  border-color: rgba(212, 255, 0, 0.4);
+  background: linear-gradient(145deg, var(--void-elevated), rgba(212, 255, 0, 0.06));
+}
+
 .badge {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -141,17 +151,18 @@ p.subtitle {
   margin-bottom: 16px;
 }
 
-.badge-new { background: rgba(212, 255, 0, 0.15); color: var(--accent); border: 1px solid rgba(212, 255, 0, 0.3); }
+.badge-featured { background: rgba(212, 255, 0, 0.2); color: var(--accent); border: 1px solid rgba(212, 255, 0, 0.4); }
+.badge-new { background: rgba(74, 144, 226, 0.15); color: var(--accent-blue); border: 1px solid rgba(74, 144, 226, 0.3); }
 .badge-v1 { background: rgba(160, 96, 255, 0.15); color: var(--accent-purple); border: 1px solid rgba(160, 96, 255, 0.3); }
 
 .card-title {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 700;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .card-desc {
-  font-size: 14px;
+  font-size: 13px;
   color: var(--optical-muted);
   line-height: 1.55;
   margin-bottom: 24px;
@@ -159,7 +170,7 @@ p.subtitle {
 
 .card-cta {
   font-family: var(--font-mono);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
   color: var(--accent);
   display: flex;
@@ -174,24 +185,36 @@ p.subtitle {
 <div class="tech-grid"></div>
 
 <div class="container">
-  <div class="tag">Kintu Labs — Client Presentation Portal</div>
+  <div class="tag">Kintu Labs — Client Portal</div>
   <h1>Propuestas de Transformación <span class="em">Telefilms Group</span></h1>
-  <p class="subtitle">Selecciona la versión de presentación para proyectar en la reunión ejecutiva:</p>
+  <p class="subtitle">Selecciona la versión o formato deseado para visualizar la propuesta estratégica:</p>
 
   <div class="grid">
-    <!-- OPCIÓN NUEVA: TTO -->
-    <a href="presentacion_tto.html" class="card-link">
+    <!-- OPCIÓN PRINCIPAL: PROPUESTA DUAL RECOMENDADA -->
+    <a href="propuesta_comercial_telefims_kintu.html" class="card-link highlight">
       <div>
-        <span class="badge badge-new">NUEVA PROPUESTA · TTO SUSCRIPCIÓN</span>
-        <div class="card-title">Célula por Suscripción (TTO)</div>
+        <span class="badge badge-featured">★ RECOMENDADO · FORMATO COMPLETO</span>
+        <div class="card-title">Propuesta Comercial & Presentación</div>
         <div class="card-body card-desc">
-          Modelo de Gerencia de Transformación Tercerizada por Suscripción Trimestral (<strong>USD 28.000 / mes</strong>). Integración de Estrategia, Gestión del Cambio e Ingeniería de Datos con entregables al Día 90.
+          Presentación interactiva de 12 slides + <strong>Documento comercial scrollable completo</strong> con roles, inversión, SLA, condiciones y bloque de firma.
         </div>
       </div>
-      <div class="card-cta">Ver Presentación TTO →</div>
+      <div class="card-cta">Abrir Propuesta Completa →</div>
     </a>
 
-    <!-- OPCIÓN ANTERIOR: V1 -->
+    <!-- OPCIÓN TTO SLIDES -->
+    <a href="presentacion_tto.html" class="card-link">
+      <div>
+        <span class="badge badge-new">SLIDES · TTO SUSCRIPCIÓN</span>
+        <div class="card-title">Presentación TTO (12 Slides)</div>
+        <div class="card-body card-desc">
+          Formato slide de reunión ejecutiva enfocado en el modelo de Célula de Transformación por Suscripción Trimestral (<strong>USD 28.000 / mes</strong>).
+        </div>
+      </div>
+      <div class="card-cta">Ver Slides TTO →</div>
+    </a>
+
+    <!-- OPCIÓN V1 -->
     <a href="presentacion_lorena_v1.html" class="card-link">
       <div>
         <span class="badge badge-v1">VERSIÓN 1 · DISCOVERY PILOT</span>
