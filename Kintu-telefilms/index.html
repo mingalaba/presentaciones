@@ -2212,20 +2212,26 @@ h1 .em, h2 .em, h3 .em {
         <li><strong>Backlog de Reportes Priorizados:</strong> Matriz detallada de métricas, filtros y criterios de aceptación acordados con las áreas de negocio.</li>
         <li><strong>Hallazgos Iniciales de ERPs & Roadmap del Assessment Continuo:</strong> Diagnóstico de los primeros módulos analizados y un mapa de ruta transparente que especifica el esfuerzo y calendario necesario para completar el assessment del ecosistema de ERPs en fases subsecuentes.</li>
         <li><strong>Evaluación Financiera de Infraestructura e IA:</strong> Estimación de costos de cómputo en la nube y consumo de tokens para futuras capas analíticas/conversacionales.</li>
+        <li><strong>Matriz de Dimensionamiento & Presupuesto Fase 2:</strong> Estudio de capacidad técnica que especifica la composición idónea de la célula de ingeniería para la etapa de construcción, adaptada al ritmo que decida Telefilms.</li>
       </ol>
 
       <p class="doc-text">
         Con estos entregables en mano, al Día 90 Telefilms cuenta con la información necesaria para elegir libremente entre:
       </p>
 
-      <div class="option-cards">
+      <div class="option-cards" style="grid-template-columns: repeat(3, 1fr);">
         <div class="option-card" style="border-color: rgba(212, 255, 0, 0.3);">
           <div class="option-card-label">Opción A</div>
-          <div class="option-card-title">Continuar Suscripción TTO</div>
-          <div class="option-card-desc">Continuar la suscripción TTO para la fase de construcción iterativa y profundización del assessment de ERPs.</div>
+          <div class="option-card-title">Célula TTO Estándar</div>
+          <div class="option-card-desc">Mantener la capacidad actual (USD 28.000/mes) para la construcción iterativa a ritmo constante.</div>
+        </div>
+        <div class="option-card" style="border-color: rgba(255, 179, 0, 0.3);">
+          <div class="option-card-label" style="color: var(--accent-amber);">Opción B</div>
+          <div class="option-card-title">Célula Acelerada</div>
+          <div class="option-card-desc">Recalibrar o ampliar la célula con especialistas adicionales según los hallazgos técnicos para acelerar la salida a producción.</div>
         </div>
         <div class="option-card" style="border-color: rgba(74, 144, 226, 0.3);">
-          <div class="option-card-label" style="color: var(--accent-blue);">Opción B</div>
+          <div class="option-card-label" style="color: var(--accent-blue);">Opción C</div>
           <div class="option-card-title">Precio Cerrado</div>
           <div class="option-card-desc">Cotizar la construcción a Precio Cerrado tomando como base el Blueprint y prototipos entregados.</div>
         </div>
@@ -2265,13 +2271,14 @@ h1 .em, h2 .em, h3 .em {
     <!-- ─── SECTION 10: CONDICIONES TRIMESTRE 2 ─── -->
     <section class="doc-section" id="sec-trimestre2">
       <span class="doc-section-num">// Sección 10</span>
-      <h2>Condiciones para la <span class="em">Contratación del Trimestre 2</span></h2>
+      <h2>Condiciones para la <span class="em">Contratación de la Fase 2 (Trimestre 2)</span></h2>
       <p class="doc-text">
-        Una vez cerrado el primer ciclo (Día 90) y con todos los entregables listos (Blueprint, Prototipos, Roadmap de ERPs):
+        El canon mensual de <strong>USD 28.000 + IVA</strong> aplica de forma fija durante la <strong>Fase 1 (Meses 1 a 3 - Discovery, Blueprint & Prototipado)</strong>. Una vez cerrado el primer ciclo (Día 90) y con los entregables de arquitectura listos:
       </p>
       <ul class="doc-list">
-        <li>Telefilms podrá contratar un <strong>nuevo ciclo de la Célula TTO</strong> para ejecutar la Fase 2.</li>
-        <li>El roadmap definitivo y la propuesta de la Fase 2 <strong>se cotizarán con mayor precisión al cierre del primer trimestre</strong>, al contar con visibilidad completa sobre el estado real de la empresa y del proyecto.</li>
+        <li><strong>Contratación de Fase 2:</strong> Telefilms podrá renovar la suscripción mediante un nuevo ciclo de la Célula TTO para ejecutar la fase de construcción e ingesta continua del Data Lake.</li>
+        <li><strong>Recalibración de Capacidad & Composición del Equipo:</strong> La composición y el volumen de dedicación de la célula para la Fase 2 se definirán formalmente al Día 90. Si los hallazgos del diagnóstico indican la necesidad de incorporar especialistas adicionales (ej. Data Engineers ETL, conectores a ERPs específicos o desarrolladores BI) para aumentar la velocidad de salida a producción, se presentará la propuesta de la Célula Acelerada manteniendo la tarifa hora de referencia (<strong>USD 70 + IVA/hora</strong>).</li>
+        <li><strong>Certeza Presupuestaria:</strong> El mapa de ruta y la cotización definitiva de la Fase 2 se presentarán con precisión absoluta al contar con evidencia real de los sistemas y reglas de negocio.</li>
       </ul>
     </section>
 
@@ -2505,6 +2512,18 @@ h1 .em, h2 .em, h3 .em {
         <div class="faq-answer">
           <div class="faq-answer-inner">
             En un entorno dinámico como el mercado audiovisual multicanal, las prioridades comerciales y las oportunidades operativas cambian constantemente. Un proyecto de alcance cerrado clásico "congela" un pliego de especificaciones redactado al inicio que rápidamente queda desactualizado, generando rigidez contractual, adicionales por cambio y el riesgo de desarrollar funciones que ya no agregan valor. Con el modelo iterativo por suscripción TTO, el backlog se ajusta y prioriza en cada sprint de 14 días en función de las necesidades vigentes de Telefilms, garantizando que el esfuerzo técnico esté siempre alineado para <strong>maximizar el retorno de inversión (ROI)</strong>.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>¿El precio de USD 28.000/mes se mantiene idéntico para la etapa de construcción (Fase 2)?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            El monto de USD 28.000/mes garantiza la célula multidisciplinaria dedicada a completar el Discovery, el Blueprint de arquitectura y los prototipos navegables durante los primeros 90 días. Al finalizar esta etapa (Día 90), presentaremos el informe de dimensionamiento para la Fase 2. Telefilms podrá elegir libremente mantener la misma capacidad mensual o recalibrar el equipo (agregando o reasignando especialistas) según la velocidad de construcción que desee imprimir al proyecto.
           </div>
         </div>
       </div>
